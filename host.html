@@ -1,56 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Congress Voting - Host</title>
 
-    <link rel="stylesheet" href="css/style.css">
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Voting Console - Host</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="css/style.css">
+
 </head>
+
+
 <body>
+
 
 <div class="container">
 
-    <h1>Congress Voting</h1>
 
-    <div class="results">
+<div class="card">
 
-        <div class="result-row">
-            <span>YES</span>
-            <span id="yesCount">0</span>
-        </div>
 
-        <div class="result-row">
-            <span>NO</span>
-            <span id="noCount">0</span>
-        </div>
+<h1 class="title">
 
-        <div class="result-row">
-            <span>NOT VOTED</span>
-            <span id="notVoted">7</span>
-        </div>
+Host Console
 
-    </div>
+</h1>
 
-    <div class="buttons">
 
-        <button id="openButton" class="yes">
-            OPEN VOTING
-        </button>
+<p class="subtitle" id="status">
 
-        <button id="closeButton">
-            CLOSE VOTING
-        </button>
+Voting Closed
 
-        <button id="resetButton" class="no">
-            RESET
-        </button>
+</p>
 
-    </div>
+
+
+<div class="results">
+
+
+<div class="result-row">
+
+<span>YES</span>
+
+<strong id="yesCount">0</strong>
 
 </div>
 
+
+
+<div class="result-row">
+
+<span>NO</span>
+
+<strong id="noCount">0</strong>
+
+</div>
+
+
+
+<div class="result-row">
+
+<span>NOT VOTED</span>
+
+<strong id="notVoted">7</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="menu">
+
+
+<button id="openButton" class="blue">
+
+OPEN VOTING
+
+</button>
+
+
+<button id="closeButton" class="blue">
+
+CLOSE VOTING
+
+</button>
+
+
+<button id="resetButton" class="no">
+
+RESET ROUND
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
 <script type="module" src="js/host.js"></script>
 
+
 </body>
+
 </html>
