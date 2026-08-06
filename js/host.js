@@ -8,91 +8,269 @@ import {
     getDocs,
     deleteDoc,
     doc,
-    onSnapshot
+    onSnapshot,
+    getDoc
 } from "./firebase.js";
 
+
+// Page Elements
+
+const statusText = document.getElementById("status");
+
 const yesCount = document.getElementById("yesCount");
+
 const noCount = document.getElementById("noCount");
+
 const notVoted = document.getElementById("notVoted");
 
+
 const openButton = document.getElementById("openButton");
+
 const closeButton = document.getElementById("closeButton");
+
 const resetButton = document.getElementById("resetButton");
 
-const EXPECTED_VOTERS = 7;
 
-async function updateResults() {
+// Settings
 
-    const snapshot = await getDocs(votersRef);
+const TOTAL_VOTERS = 7;
 
-    let yes = 0;
-    let no = 0;
 
-    snapshot.forEach(docSnap => {
+// Track current round
 
-        const vote = docSnap.data().vote;
+let currentRound = 1;
 
-        if (vote === "yes") yes++;
 
-        if (vote === "no") no++;
 
-    });
+// Listen for room status changes
 
-    yesCount.textContent = yes;
-    noCount.textContent = no;
-    notVoted.textContent = EXPECTED_VOTERS - (yes + no);
+onSnapshot(roomRef, (snapshot)=>{
 
-}
 
-onSnapshot(votersRef, () => {
+    if(!snapshot.exists()){
 
-    updateResults();
-
-});
-
-openButton.onclick = async () => {
-
-    await updateDoc(roomRef, {
-
-        open: true
-
-    });
-
-};
-
-closeButton.onclick = async () => {
-
-    await updateDoc(roomRef, {
-
-        open: false
-
-    });
-
-};
-
-resetButton.onclick = async () => {
-
-    const snapshot = await getDocs(votersRef);
-
-    for (const vote of snapshot.docs) {
-
-        await deleteDoc(doc(votersRef, vote.id));
+        return;
 
     }
 
-    const room = await roomRef;
 
-    onSnapshot(roomRef, async (snap) => {
+    const room = snapshot.data();
 
-        const round = snap.data().round + 1;
 
-        await updateDoc(roomRef, {
+    currentRound = room.round;
 
-            round: round,
-            open: false
 
-        });
+    if(room.open){
+
+        statusText.textContent =
+            "Voting Open";
+
+    }
+
+    else{
+
+        statusText.textContent =
+            "Voting Closed";
+
+    }
+
+
+});
+
+
+
+
+
+// Update vote totals
+
+async function updateResults(){
+
+
+    const snapshot =
+        await getDocs(votersRef);
+
+
+
+    let yes = 0;
+
+    let no = 0;
+
+
+
+    snapshot.forEach((vote)=>{
+
+
+        const data = vote.data();
+
+
+
+        if(data.round !== currentRound){
+
+            return;
+
+        }
+
+
+
+        if(data.vote === "yes"){
+
+            yes++;
+
+        }
+
+
+
+        if(data.vote === "no"){
+
+            no++;
+
+        }
+
 
     });
 
-};
+
+
+    yesCount.textContent = yes;
+
+
+    noCount.textContent = no;
+
+
+    notVoted.textContent =
+        TOTAL_VOTERS - (yes + no);
+
+
+}
+
+
+
+// Watch voter changes
+
+onSnapshot(votersRef, ()=>{
+
+
+    updateResults();
+
+
+});
+
+
+
+
+
+// Open voting
+
+openButton.addEventListener(
+    "click",
+    async ()=>{
+
+
+        await updateDoc(
+
+            roomRef,
+
+            {
+
+                open:true
+
+            }
+
+        );
+
+
+    }
+);
+
+
+
+
+
+// Close voting
+
+closeButton.addEventListener(
+    "click",
+    async ()=>{
+
+
+        await updateDoc(
+
+            roomRef,
+
+            {
+
+                open:false
+
+            }
+
+        );
+
+
+    }
+);
+
+
+
+
+
+// Reset voting round
+
+resetButton.addEventListener(
+    "click",
+    async ()=>{
+
+
+        // Delete previous votes
+
+        const votes =
+            await getDocs(votersRef);
+
+
+
+        for(const vote of votes.docs){
+
+
+            await deleteDoc(
+
+                doc(
+                    votersRef,
+                    vote.id
+                )
+
+            );
+
+
+        }
+
+
+
+        // Increase round number
+
+        const room =
+            await getDoc(roomRef);
+
+
+
+        const nextRound =
+            room.data().round + 1;
+
+
+
+        await updateDoc(
+
+            roomRef,
+
+            {
+
+                round:
+                    nextRound,
+
+                open:false
+
+            }
+
+        );
+
+
+    }
+);
