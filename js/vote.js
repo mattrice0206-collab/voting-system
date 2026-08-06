@@ -4,6 +4,7 @@ import {
     getDeviceId
 } from "./common.js";
 
+
 import {
     doc,
     getDoc,
@@ -13,9 +14,8 @@ import {
 } from "./firebase.js";
 
 
-// Page elements
 
-const statusText = document.getElementById("status");
+const status = document.getElementById("status");
 
 const buttons = document.getElementById("buttons");
 
@@ -24,33 +24,28 @@ const yesButton = document.getElementById("yesButton");
 const noButton = document.getElementById("noButton");
 
 
-// Device identity
 
 const deviceID = getDeviceId();
 
 
-// Current voting round
 
 let currentRound = 1;
 
-
-// Prevent double clicking
-
-let hasVoted = false;
+let alreadyVoted = false;
 
 
 
-// Watch the voting room
+// Watch voting status
 
-onSnapshot(roomRef, async (snapshot) => {
+onSnapshot(roomRef, async(snapshot)=>{
 
 
-    if (!snapshot.exists()) {
+    if(!snapshot.exists()){
 
-        statusText.textContent =
-            "Voting system unavailable";
+        status.textContent =
+        "System unavailable";
 
-        buttons.style.display = "none";
+        buttons.style.display="none";
 
         return;
 
@@ -65,9 +60,9 @@ onSnapshot(roomRef, async (snapshot) => {
 
 
 
-    // Check if this device already voted
+    // Check previous vote
 
-    const existingVote = await getDoc(
+    const vote = await getDoc(
 
         doc(
             votersRef,
@@ -78,20 +73,16 @@ onSnapshot(roomRef, async (snapshot) => {
 
 
 
-    hasVoted = false;
+    alreadyVoted = false;
 
 
 
-    if(existingVote.exists()){
+    if(vote.exists()){
 
 
-        const voteData = existingVote.data();
+        if(vote.data().round === currentRound){
 
-
-
-        if(voteData.round === currentRound){
-
-            hasVoted = true;
+            alreadyVoted = true;
 
         }
 
@@ -99,21 +90,20 @@ onSnapshot(roomRef, async (snapshot) => {
 
 
 
-    // Voting closed
+    // Closed
 
     if(!room.open){
 
 
-        statusText.textContent =
-            "Waiting for next vote";
+        status.textContent =
+        "Waiting for next vote";
 
 
         buttons.style.display =
-            "none";
+        "none";
 
 
         return;
-
 
     }
 
@@ -121,33 +111,31 @@ onSnapshot(roomRef, async (snapshot) => {
 
     // Already voted
 
-    if(hasVoted){
+    if(alreadyVoted){
 
 
-        statusText.textContent =
-            "Vote Recorded";
+        status.textContent =
+        "Vote Recorded";
 
 
         buttons.style.display =
-            "none";
+        "none";
 
 
         return;
-
 
     }
 
 
 
-    // Voting available
+    // Open voting
 
-    statusText.textContent =
-        "Cast Your Vote";
+    status.textContent =
+    "Cast Your Vote";
 
 
     buttons.style.display =
-        "grid";
-
+    "flex";
 
 
 });
@@ -156,12 +144,10 @@ onSnapshot(roomRef, async (snapshot) => {
 
 
 
-// Submit vote
-
-async function submitVote(choice){
+async function castVote(choice){
 
 
-    if(hasVoted){
+    if(alreadyVoted){
 
         return;
 
@@ -178,30 +164,29 @@ async function submitVote(choice){
 
         {
 
-            vote: choice,
+            vote:choice,
 
-            round: currentRound,
+            round:currentRound,
 
             timestamp:
-                serverTimestamp()
+            serverTimestamp()
 
         }
-
 
     );
 
 
 
-    hasVoted = true;
+    alreadyVoted=true;
 
 
 
-    statusText.textContent =
-        "Vote Recorded";
+    status.textContent =
+    "Vote Recorded";
 
 
     buttons.style.display =
-        "none";
+    "none";
 
 
 }
@@ -210,24 +195,16 @@ async function submitVote(choice){
 
 
 
-// Buttons
+yesButton.onclick=()=>{
 
-yesButton.addEventListener(
-    "click",
-    () => {
+    castVote("yes");
 
-        submitVote("yes");
-
-    }
-);
+};
 
 
 
-noButton.addEventListener(
-    "click",
-    () => {
+noButton.onclick=()=>{
 
-        submitVote("no");
+    castVote("no");
 
-    }
-);
+};
