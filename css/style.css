@@ -1,16 +1,51 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* ==============================
+   Voting Console - Main Styles
+   ============================== */
+
+:root {
+
+    --background: #080d18;
+    --panel: #111827;
+    --panel-light: #1e293b;
+
+    --blue: #2563eb;
+    --green: #16a34a;
+    --red: #dc2626;
+
+    --text: #f8fafc;
+    --muted: #94a3b8;
+
+    --border: rgba(255,255,255,0.08);
+
 }
 
-body{
 
-    background:#101522;
+* {
 
-    color:white;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 
-    font-family:Arial,Helvetica,sans-serif;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #172554,
+            var(--background) 45%
+        );
+
+    color: var(--text);
+
+    font-family:
+        "Inter",
+        Arial,
+        sans-serif;
 
     display:flex;
 
@@ -18,180 +53,205 @@ body{
 
     align-items:center;
 
-    min-height:100vh;
+}
+
+
+/* Main containers */
+
+.container,
+.landing {
+
+    width:90%;
+
+    max-width:900px;
 
 }
 
-.container{
 
-    width:95%;
+/* Glass panels */
 
-    max-width:700px;
+.card {
 
-    background:#1a2233;
+    background:
+        rgba(17,24,39,.85);
 
-    border-radius:20px;
+    backdrop-filter:
+        blur(20px);
 
-    padding:40px;
+    border:
 
-    box-shadow:0 15px 45px rgba(0,0,0,.45);
+        1px solid var(--border);
+
+
+    border-radius:24px;
+
+    padding:45px;
+
+    box-shadow:
+
+        0 25px 60px rgba(0,0,0,.45);
 
 }
 
-.landing{
 
-    width:95%;
+/* Typography */
 
-    max-width:600px;
-
-    text-align:center;
-
-}
-
-h1{
+.title {
 
     font-size:3rem;
 
-    margin-bottom:15px;
+    font-weight:800;
+
+    text-align:center;
+
+    letter-spacing:-1px;
 
 }
 
-p{
 
-    color:#9ca9c4;
+.subtitle {
 
-    margin-bottom:50px;
+    text-align:center;
+
+    color:var(--muted);
+
+    margin-top:12px;
+
+    font-size:1.1rem;
 
 }
 
-.homeButton{
+
+
+/* Home buttons */
+
+.menu {
+
+    margin-top:45px;
+
+    display:grid;
+
+    gap:20px;
+
+}
+
+
+.menu-button {
 
     display:block;
+
+    text-align:center;
 
     text-decoration:none;
 
     color:white;
 
-    background:#2563eb;
+    padding:25px;
 
-    padding:20px;
-
-    margin:20px auto;
-
-    border-radius:12px;
+    border-radius:16px;
 
     font-size:1.3rem;
 
-    font-weight:bold;
+    font-weight:700;
 
-    transition:.2s;
-
-}
-
-.homeButton:hover{
-
-    background:#1d4ed8;
-
-    transform:translateY(-3px);
+    transition:.25s;
 
 }
 
-.results{
 
-    margin:40px 0;
+.menu-button:hover {
 
-}
-
-.result-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    padding:18px;
-
-    margin:15px 0;
-
-    background:#111827;
-
-    border-radius:12px;
-
-    font-size:1.5rem;
+    transform:translateY(-4px);
 
 }
 
-.buttons{
 
-    display:grid;
+/* Host button */
 
-    gap:18px;
+.host {
+
+    background:var(--blue);
 
 }
 
-button{
+
+/* Voter button */
+
+.vote {
+
+    background:var(--green);
+
+}
+
+
+/* Voting buttons */
+
+button {
+
+    width:100%;
 
     border:none;
 
-    padding:22px;
+    padding:28px;
 
-    border-radius:12px;
-
-    cursor:pointer;
+    border-radius:18px;
 
     color:white;
 
-    font-size:1.3rem;
+    font-size:1.5rem;
 
-    font-weight:bold;
+    font-weight:800;
+
+    cursor:pointer;
 
     transition:.2s;
 
 }
 
-button:hover{
 
-    transform:scale(1.02);
+button:hover {
 
-}
-
-.yes{
-
-    background:#16a34a;
+    transform:scale(1.03);
 
 }
 
-.no{
 
-    background:#dc2626;
+.yes {
 
-}
-
-#closeButton{
-
-    background:#2563eb;
+    background:var(--green);
 
 }
 
-#status{
 
-    font-size:1.8rem;
+.no {
 
-    text-align:center;
-
-    margin:35px 0;
+    background:var(--red);
 
 }
 
-#buttons{
 
-    display:grid;
+.blue {
 
-    gap:25px;
+    background:var(--blue);
 
 }
 
-.hidden{
 
-    display:none !important;
+/* Mobile */
+
+@media(max-width:600px){
+
+    .card {
+
+        padding:25px;
+
+    }
+
+
+    .title {
+
+        font-size:2.2rem;
+
+    }
 
 }
