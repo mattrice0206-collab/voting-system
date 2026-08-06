@@ -1,51 +1,76 @@
-/* ==============================
-   Voting Console - Main Styles
-   ============================== */
+/* ===============================
+   Voting Console
+   Professional UI
+================================ */
+
 
 :root {
 
-    --background: #080d18;
-    --panel: #111827;
-    --panel-light: #1e293b;
+    --background:#070b16;
 
-    --blue: #2563eb;
-    --green: #16a34a;
-    --red: #dc2626;
+    --card:#111827;
 
-    --text: #f8fafc;
-    --muted: #94a3b8;
+    --card-light:#1f2937;
 
-    --border: rgba(255,255,255,0.08);
+    --text:#f8fafc;
+
+    --muted:#94a3b8;
+
+    --blue:#2563eb;
+
+    --green:#16a34a;
+
+    --red:#dc2626;
+
+    --border:rgba(255,255,255,.08);
 
 }
+
 
 
 * {
 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    box-sizing:border-box;
+
+    margin:0;
+
+    padding:0;
 
 }
 
 
+
 body {
 
-    min-height: 100vh;
+    min-height:100vh;
 
     background:
-        radial-gradient(
-            circle at top,
-            #172554,
-            var(--background) 45%
-        );
 
-    color: var(--text);
+    radial-gradient(
+        circle at top,
+        #1e3a8a,
+        var(--background) 50%
+    );
+
+    color:var(--text);
 
     font-family:
         "Inter",
         Arial,
         sans-serif;
+
+}
+
+
+
+/* ===============================
+   VOTER PAGE
+================================ */
+
+
+.vote-page {
+
+    min-height:100vh;
 
     display:flex;
 
@@ -53,279 +78,40 @@ body {
 
     align-items:center;
 
-}
-
-
-/* Main containers */
-
-.container,
-.landing {
-
-    width:90%;
-
-    max-width:900px;
+    padding:20px;
 
 }
 
 
-/* Glass panels */
 
-.card {
+.vote-card {
+
+
+    width:100%;
+
+    max-width:520px;
+
 
     background:
-        rgba(17,24,39,.85);
 
-    backdrop-filter:
-        blur(20px);
+    rgba(17,24,39,.92);
+
 
     border:
 
-        1px solid var(--border);
+    1px solid var(--border);
 
 
-    border-radius:24px;
+    border-radius:28px;
 
-    padding:45px;
+
+    padding:40px;
+
 
     box-shadow:
 
-        0 25px 60px rgba(0,0,0,.45);
+    0 25px 70px rgba(0,0,0,.5);
 
-}
-
-
-/* Typography */
-
-.title {
-
-    font-size:3rem;
-
-    font-weight:800;
-
-    text-align:center;
-
-    letter-spacing:-1px;
-
-}
-
-
-.subtitle {
-
-    text-align:center;
-
-    color:var(--muted);
-
-    margin-top:12px;
-
-    font-size:1.1rem;
-
-}
-
-
-
-/* Home buttons */
-
-.menu {
-
-    margin-top:45px;
-
-    display:grid;
-
-    gap:20px;
-
-}
-
-
-.menu-button {
-
-    display:block;
-
-    text-align:center;
-
-    text-decoration:none;
-
-    color:white;
-
-    padding:25px;
-
-    border-radius:16px;
-
-    font-size:1.3rem;
-
-    font-weight:700;
-
-    transition:.25s;
-
-}
-
-
-.menu-button:hover {
-
-    transform:translateY(-4px);
-
-}
-
-
-/* Host button */
-
-.host {
-
-    background:var(--blue);
-
-}
-
-
-/* Voter button */
-
-.vote {
-
-    background:var(--green);
-
-}
-
-
-/* Voting buttons */
-
-button {
-
-    width:100%;
-
-    border:none;
-
-    padding:28px;
-
-    border-radius:18px;
-
-    color:white;
-
-    font-size:1.5rem;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-button:hover {
-
-    transform:scale(1.03);
-
-}
-
-
-.yes {
-
-    background:var(--green);
-
-}
-
-
-.no {
-
-    background:var(--red);
-
-}
-
-
-.blue {
-
-    background:var(--blue);
-
-}
-
-
-/* Mobile */
-
-@media(max-width:600px){
-
-    .card {
-
-        padding:25px;
-
-    }
-
-
-    .title {
-
-        font-size:2.2rem;
-
-    }
-
-}
-
-.results {
-
-    margin:40px 0;
-
-}
-
-
-.result-row {
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:var(--panel-light);
-
-    border-radius:16px;
-
-    padding:22px;
-
-    margin-bottom:15px;
-
-    font-size:1.4rem;
-
-}
-
-
-.result-row strong {
-
-    font-size:2rem;
-
-}
-
-/* =================================
-   Mobile Voting Device Interface
-   ================================= */
-
-
-.mobile-vote {
-
-    background:
-
-        radial-gradient(
-            circle at top,
-            #1e3a8a,
-            #020617
-        );
-
-}
-
-
-
-.vote-device {
-
-
-    width:100%;
-
-    max-width:500px;
-
-    min-height:100vh;
-
-    padding:30px 20px;
-
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:space-between;
 
     text-align:center;
 
@@ -337,12 +123,12 @@ button:hover {
 .vote-header h1 {
 
 
-    font-size:2.4rem;
+    font-size:2.5rem;
 
     font-weight:800;
 
-
 }
+
 
 
 .vote-header p {
@@ -350,8 +136,7 @@ button:hover {
 
     color:var(--muted);
 
-    margin-top:8px;
-
+    margin-top:10px;
 
 }
 
@@ -360,23 +145,19 @@ button:hover {
 .vote-status {
 
 
-    background:
-
-        rgba(255,255,255,.08);
-
-
-    border:
-
-        1px solid rgba(255,255,255,.1);
+    margin:40px 0;
 
 
     padding:25px;
 
 
-    border-radius:20px;
+    border-radius:18px;
 
 
-    font-size:1.5rem;
+    background:var(--card-light);
+
+
+    font-size:1.4rem;
 
     font-weight:700;
 
@@ -385,12 +166,14 @@ button:hover {
 
 
 
-.vote-buttons {
+.vote-actions {
 
 
     display:flex;
 
+
     flex-direction:column;
+
 
     gap:25px;
 
@@ -399,48 +182,76 @@ button:hover {
 
 
 
-.vote-buttons button {
+.vote-button {
 
 
-    height:160px;
+    width:100%;
+
+
+    height:150px;
+
+
+    border:none;
+
+
+    border-radius:24px;
+
+
+    color:white;
+
 
     font-size:3rem;
 
-    border-radius:30px;
 
     font-weight:900;
 
 
-}
+    cursor:pointer;
 
 
-
-.mobile-yes {
-
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #22c55e,
-            #15803d
-        );
+    transition:.2s;
 
 
 }
 
 
 
-.mobile-no {
+.vote-button:hover {
+
+
+    transform:scale(1.03);
+
+
+}
+
+
+
+.yes-button {
 
 
     background:
 
-        linear-gradient(
-            135deg,
-            #ef4444,
-            #991b1b
-        );
+    linear-gradient(
+        135deg,
+        #22c55e,
+        #15803d
+    );
+
+
+}
+
+
+
+.no-button {
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #ef4444,
+        #991b1b
+    );
 
 
 }
@@ -450,33 +261,72 @@ button:hover {
 .vote-footer {
 
 
+    margin-top:35px;
+
+
     color:var(--muted);
+
 
     font-size:.9rem;
 
-}
-
-.mobile-yes {
-
-    background: linear-gradient(
-        135deg,
-        #22c55e,
-        #15803d
-    );
-
-    color:white;
 
 }
 
 
-.mobile-no {
 
-    background: linear-gradient(
-        135deg,
-        #ef4444,
-        #991b1b
-    );
+.hidden {
 
-    color:white;
+    display:none !important;
+
+}
+
+
+
+/* ===============================
+   MOBILE OPTIMIZATION
+================================ */
+
+
+@media(max-width:600px){
+
+
+    .vote-card {
+
+        min-height:90vh;
+
+        padding:25px;
+
+        display:flex;
+
+        flex-direction:column;
+
+        justify-content:space-between;
+
+
+    }
+
+
+    .vote-header h1 {
+
+        font-size:2rem;
+
+    }
+
+
+    .vote-status {
+
+        font-size:1.2rem;
+
+    }
+
+
+    .vote-button {
+
+        height:180px;
+
+        font-size:3.2rem;
+
+    }
+
 
 }
