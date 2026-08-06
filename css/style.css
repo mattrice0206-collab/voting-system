@@ -289,3 +289,169 @@ button:hover {
     font-size:2rem;
 
 }
+
+/* =================================
+   Mobile Voting Device Interface
+   ================================= */
+
+
+.mobile-vote {
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            #1e3a8a,
+            #020617
+        );
+
+}
+
+
+
+.vote-device {
+
+
+    width:100%;
+
+    max-width:500px;
+
+    min-height:100vh;
+
+    padding:30px 20px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    text-align:center;
+
+
+}
+
+
+
+.vote-header h1 {
+
+
+    font-size:2.4rem;
+
+    font-weight:800;
+
+
+}
+
+
+.vote-header p {
+
+
+    color:var(--muted);
+
+    margin-top:8px;
+
+
+}
+
+
+
+.vote-status {
+
+
+    background:
+
+        rgba(255,255,255,.08);
+
+
+    border:
+
+        1px solid rgba(255,255,255,.1);
+
+
+    padding:25px;
+
+
+    border-radius:20px;
+
+
+    font-size:1.5rem;
+
+    font-weight:700;
+
+
+}
+
+
+
+.vote-buttons {
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+
+}
+
+
+
+.vote-buttons button {
+
+
+    height:160px;
+
+    font-size:3rem;
+
+    border-radius:30px;
+
+    font-weight:900;
+
+
+}
+
+
+
+.mobile-yes {
+
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+
+}
+
+
+
+.mobile-no {
+
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #991b1b
+        );
+
+
+}
+
+
+
+.vote-footer {
+
+
+    color:var(--muted);
+
+    font-size:.9rem;
+
+}
