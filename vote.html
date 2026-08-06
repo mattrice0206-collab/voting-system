@@ -4,16 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Voting Console</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Voting Console - Vote</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -23,66 +16,65 @@
 <body>
 
 
-<main class="vote-page">
+<div class="vote-page">
 
 
-<section class="vote-card">
+    <div class="vote-card">
 
 
-<header class="vote-header">
+        <h1>
+            Voting Console
+        </h1>
 
-<h1>
-Voting Console
-</h1>
 
-<p>
-Anonymous • Secure • Real-Time
-</p>
-
-</header>
+        <p class="subtitle">
+            Anonymous • Secure • Real-Time
+        </p>
 
 
 
-<div id="status" class="vote-status">
+        <div id="status" class="vote-status">
 
-Waiting for next vote...
+            Waiting for next vote...
+
+        </div>
+
+
+
+
+        <div id="buttons" class="vote-buttons">
+
+
+            <button id="yesButton" class="yes-button">
+
+                YES
+
+            </button>
+
+
+
+            <button id="noButton" class="no-button">
+
+                NO
+
+            </button>
+
+
+        </div>
+
+
+
+        <div class="footer">
+
+            Connected
+
+        </div>
+
+
+    </div>
+
 
 </div>
-
-
-
-<div id="buttons" class="vote-actions hidden">
-
-
-<button id="yesButton" class="vote-button yes-button">
-
-YES
-
-</button>
-
-
-<button id="noButton" class="vote-button no-button">
-
-NO
-
-</button>
-
-
-</div>
-
-
-
-<footer class="vote-footer">
-
-Connected Device
-
-</footer>
-
-
-</section>
-
-
-</main>
 
 
 
