@@ -5,43 +5,91 @@ import {
 } from "./common.js";
 
 import {
+    doc,
     getDoc,
     setDoc,
-    doc,
     onSnapshot,
     serverTimestamp
 } from "./firebase.js";
 
-const status = document.getElementById("status");
+
+// Page elements
+
+const statusText = document.getElementById("status");
+
 const buttons = document.getElementById("buttons");
 
 const yesButton = document.getElementById("yesButton");
+
 const noButton = document.getElementById("noButton");
 
-const deviceId = getDeviceId();
+
+// Device identity
+
+const deviceID = getDeviceId();
+
+
+// Current voting round
 
 let currentRound = 1;
+
+
+// Prevent double clicking
 
 let hasVoted = false;
 
 
-// Listen for room updates
+
+// Watch the voting room
 
 onSnapshot(roomRef, async (snapshot) => {
 
+
+    if (!snapshot.exists()) {
+
+        statusText.textContent =
+            "Voting system unavailable";
+
+        buttons.style.display = "none";
+
+        return;
+
+    }
+
+
+
     const room = snapshot.data();
+
 
     currentRound = room.round;
 
-    // Has this device already voted this round?
 
-    const voteDoc = await getDoc(doc(votersRef, deviceId));
+
+    // Check if this device already voted
+
+    const existingVote = await getDoc(
+
+        doc(
+            votersRef,
+            deviceID
+        )
+
+    );
+
+
 
     hasVoted = false;
 
-    if (voteDoc.exists()) {
 
-        if (voteDoc.data().round === currentRound) {
+
+    if(existingVote.exists()){
+
+
+        const voteData = existingVote.data();
+
+
+
+        if(voteData.round === currentRound){
 
             hasVoted = true;
 
@@ -49,54 +97,137 @@ onSnapshot(roomRef, async (snapshot) => {
 
     }
 
-    if (!room.open) {
 
-        status.textContent = "Waiting for next vote...";
 
-        buttons.classList.add("hidden");
+    // Voting closed
+
+    if(!room.open){
+
+
+        statusText.textContent =
+            "Waiting for next vote";
+
+
+        buttons.style.display =
+            "none";
+
 
         return;
 
+
     }
 
-    if (hasVoted) {
 
-        status.textContent = "Vote Recorded";
 
-        buttons.classList.add("hidden");
+    // Already voted
+
+    if(hasVoted){
+
+
+        statusText.textContent =
+            "Vote Recorded";
+
+
+        buttons.style.display =
+            "none";
+
 
         return;
 
+
     }
 
-    status.textContent = "Cast Your Vote";
 
-    buttons.classList.remove("hidden");
+
+    // Voting available
+
+    statusText.textContent =
+        "Cast Your Vote";
+
+
+    buttons.style.display =
+        "grid";
+
+
 
 });
 
-async function vote(choice) {
 
-    if (hasVoted) return;
 
-    await setDoc(doc(votersRef, deviceId), {
 
-        vote: choice,
 
-        round: currentRound,
+// Submit vote
 
-        timestamp: serverTimestamp()
+async function submitVote(choice){
 
-    });
+
+    if(hasVoted){
+
+        return;
+
+    }
+
+
+
+    await setDoc(
+
+        doc(
+            votersRef,
+            deviceID
+        ),
+
+        {
+
+            vote: choice,
+
+            round: currentRound,
+
+            timestamp:
+                serverTimestamp()
+
+        }
+
+
+    );
+
+
 
     hasVoted = true;
 
-    status.textContent = "Vote Recorded";
 
-    buttons.classList.add("hidden");
+
+    statusText.textContent =
+        "Vote Recorded";
+
+
+    buttons.style.display =
+        "none";
+
 
 }
 
-yesButton.onclick = () => vote("yes");
 
-noButton.onclick = () => vote("no");
+
+
+
+// Buttons
+
+yesButton.addEventListener(
+    "click",
+    () => {
+
+        submitVote("yes");
+
+    }
+);
+
+
+
+noButton.addEventListener(
+    "click",
+    () => {
+
+        submitVote("no");
+
+    }
+);
