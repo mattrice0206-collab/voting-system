@@ -1,27 +1,66 @@
 import {
+
     db,
     doc,
     collection
+
 } from "./firebase.js";
 
-// Get or create a unique device ID
-export function getDeviceId() {
 
-    let id = localStorage.getItem("deviceId");
 
-    if (!id) {
+// Create a permanent anonymous device ID
+
+export function getDeviceId(){
+
+
+    let id = localStorage.getItem("deviceID");
+
+
+
+    if(!id){
+
 
         id = crypto.randomUUID();
 
-        localStorage.setItem("deviceId", id);
+
+        localStorage.setItem(
+            "deviceID",
+            id
+        );
+
 
     }
 
+
     return id;
+
 
 }
 
-// Firestore references
-export const roomRef = doc(db, "rooms", "main");
 
-export const votersRef = collection(roomRef, "voters");
+
+
+// Main voting room
+
+export const roomRef = doc(
+
+    db,
+
+    "rooms",
+
+    "main"
+
+);
+
+
+
+
+// Voter collection
+
+export const votersRef = collection(
+
+    roomRef,
+
+    "voters"
+
+);
