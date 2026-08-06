@@ -255,3 +255,37 @@ button:hover {
     }
 
 }
+
+.results {
+
+    margin:40px 0;
+
+}
+
+
+.result-row {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:var(--panel-light);
+
+    border-radius:16px;
+
+    padding:22px;
+
+    margin-bottom:15px;
+
+    font-size:1.4rem;
+
+}
+
+
+.result-row strong {
+
+    font-size:2rem;
+
+}
