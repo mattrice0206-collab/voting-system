@@ -2,11 +2,11 @@
 
 <html lang="en">
 
-<head
+<head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 <title>Voting Console - Vote</title>
 
@@ -20,45 +20,53 @@
 
 <link rel="stylesheet" href="css/style.css">
 
-
 </head>
 
 
-<body>
+<body class="mobile-vote">
 
 
-<div class="container">
+<div class="vote-device">
 
 
-<div class="card">
+<div class="vote-header">
 
-
-<h1 class="title">
-
-Cast Vote
-
+<h1>
+Voting Console
 </h1>
 
-
-<p class="subtitle" id="status">
-
-Waiting for vote
-
+<p>
+Anonymous Voting
 </p>
 
+</div>
 
 
-<div id="buttons" class="menu">
+
+<div id="status" class="vote-status">
+
+Waiting for next vote
+
+</div>
 
 
-<button id="yesButton" class="yes">
+
+<div id="buttons" class="vote-buttons">
+
+
+<button 
+id="yesButton"
+class="mobile-yes">
 
 YES
 
 </button>
 
 
-<button id="noButton" class="no">
+
+<button 
+id="noButton"
+class="mobile-no">
 
 NO
 
@@ -67,6 +75,11 @@ NO
 
 </div>
 
+
+
+<div class="vote-footer">
+
+Secure Connection
 
 </div>
 
