@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congress Voting - Host</title>
 
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Congress Voting</h1>
+
+    <div class="results">
+
+        <div class="result-row">
+            <span>YES</span>
+            <span id="yesCount">0</span>
+        </div>
+
+        <div class="result-row">
+            <span>NO</span>
+            <span id="noCount">0</span>
+        </div>
+
+        <div class="result-row">
+            <span>NOT VOTED</span>
+            <span id="notVoted">7</span>
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <button id="openButton" class="yes">
+            OPEN VOTING
+        </button>
+
+        <button id="closeButton">
+            CLOSE VOTING
+        </button>
+
+        <button id="resetButton" class="no">
+            RESET
+        </button>
+
+    </div>
+
+</div>
+
+<script type="module" src="js/host.js"></script>
+
+</body>
+</html>
